@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 autoload-dir() {
+    #! This function should not have other functions in use, because it's used for bootstraping at very beginning
     local srcDir="$1"
 
     #? Add base functions directory to fpath
