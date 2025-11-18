@@ -13,25 +13,27 @@ link-file-recursive-mapper() {
 
     shift 3
 
-    echo "$prefix. File: $(format-args "$filePath"). FromDir: $(format-args "$directoryFrom"), ToDir: $(format-args "$directoryTo") Rest args: $@"
+    # echo "$prefix. File: $(format-args "$filePath"). FromDir: $(format-args "$directoryFrom"), ToDir: $(format-args "$directoryTo") Rest args: $@"
     
     local fromFilePath="$directoryFrom/$fromRelativePath"
     local toFilePath="$directoryTo/$fromRelativePath"
 
     echo-verbose-debug "$prefix FromFilePath: $(format-args "$fromFilePath"), ToFilePath: $(format-args "$toFilePath")"
 
-    if ! file-is-link "$toFilePath"; then
-        link-file "$fromFilePath" "$toFilePath" "$@"
-        return $CODE_SUCCESS
-    else
-        local linkPointingTo=$(link-pointing-to "$toFilePath")
-        echo-verbose-debug "$(format-args "$toFilePath") already a link, points to: $(format-args "$linkPointingTo")"
-        if [ "$linkPointingTo" != "$fromFilePath" ]; then
-            echo-info "$prefix Linking $(format-args "$toFilePath")} to $(format-args "$fromFilePath")"
-            rm -f "$toFilePath"
-            link-file "$fromFilePath" "$toFilePath" "$@"
-            return $CODE_SUCCESS
-        fi
-        return $CODE_ERROR
-    fi
+
+    link-file "$fromFilePath" "$toFilePath" "$@"
+    # if ! file-is-link "$toFilePath"; then
+    #     link-file "$fromFilePath" "$toFilePath" "$@"
+    #     return $CODE_SUCCESS
+    # else
+    #     # local linkPointingTo=$(link-pointing-to "$toFilePath")
+    #     # echo-info "$(format-args "$toFilePath") already a link, points to: $(format-args "$linkPointingTo")"
+    #     # if [ "$linkPointingTo" != "$fromFilePath" ]; then
+    #     #     echo-info "$prefix Linking $(format-args "$toFilePath")} to $(format-args "$fromFilePath")"
+    #     #     rm -f "$toFilePath"
+    #     link-file "$fromFilePath" "$toFilePath" "$@"
+    #         # return $CODE_SUCCESS
+    #     # fi
+    #     return $CODE_ERROR
+    # fi
 }
