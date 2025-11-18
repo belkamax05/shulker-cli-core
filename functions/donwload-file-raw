@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+donwload-file-raw() {
+    local urlFrom="$1"
+    local saveTo="$2"
+    echo-info "Downloading file from $(format-args $urlFrom) to $(format-args $saveTo)..."
+    curl -L -o "$saveTo" "$urlFrom"
+}

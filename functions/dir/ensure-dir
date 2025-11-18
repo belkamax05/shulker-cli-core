@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+ensure-dir() {
+    local dirPath="$1"
+    if [[ ! -d "$dirPath" ]]; then
+        echo-info "Directory $(format-args $dirPath) does not exist. Creating..."
+        mkdir -p "$dirPath"
+    else
+        echo-info "Directory $(format-args $dirPath) already exists."
+    fi
+}
