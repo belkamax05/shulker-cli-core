@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 link-file() {
-    local prefix=$(format-cmd "link-file_personal")
+    local prefix=$(format-cmd "link-file")
     local src="$1"
     local srcDir="${src:h}"
     local dest="$2"
@@ -11,20 +11,20 @@ link-file() {
     local pointingToMessage=""
     local confirmLinking=false
     if [[ -n "$pointingTo" ]]; then
-        local pointingToFormatted=$(format-args "$pointingTo")
+        # local pointingToFormatted=$(format-args "$pointingTo")
         if [[ "$pointingTo" == "$src" ]]; then
-            pointingToMessage=" (already linked to $pointingToFormatted)"
+            pointingToMessage=" (already linked)"
         else
-            pointingToMessage=" (set to $(format-args "$dest"))"
+            pointingToMessage=" (was linked to $(format-args "$pointingTo"))"
             confirmLinking=true
         fi
+    else
+        confirmLinking=true
     fi
-    local message="$prefix Linking file\n$(pad-left "from" 20 " ") $(format-args "$src")\n$(pad-left "to" 20 " ") $(format-args "$dest")\n$(pad-left " " 20 " ")$pointingToMessage"
+    
+    local message="$prefix $(format-args "$src") > $(format-args "$dest")$pointingToMessage"
+    
     if [[ "$confirmLinking" == true ]]; then
-        # echo "dest check at $dest"
-        # if [[ -f $dest ]]; then
-        #     echo-warning "$dest already exists and is a regular file."
-        # fi
         ln -sf "$src" "$dest"
         echo-success "$message"
     else
