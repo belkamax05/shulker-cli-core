@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+if [ "$(basename "$SHELL")" != "bash" ]; then
+    echo "Default shell is not bash — no change needed."
+else
+    echo "Default shell is bash — switching to zsh..."
+    chsh -s "$(which zsh)"
+fi
