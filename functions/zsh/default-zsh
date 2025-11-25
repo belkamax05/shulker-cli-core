@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
-if [ "$(basename "$SHELL")" != "bash" ]; then
-    echo "Default shell is not bash — no change needed."
+CURRENT_SHELL=$(getent passwd "$USER" | awk -F: '{print $7}')
+
+if [[ "$CURRENT_SHELL" == *"zsh" ]]; then
+    echo "Default shell is already zsh ($CURRENT_SHELL) — no change needed."
 else
-    echo "Default shell is bash — switching to zsh..."
+    echo "Default shell is $CURRENT_SHELL — switching to zsh..."
     chsh -s "$(which zsh)"
 fi
