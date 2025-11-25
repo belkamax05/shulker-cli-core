@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+confirm-command "repo stage-all"
+repo submit $@

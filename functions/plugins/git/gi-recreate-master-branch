@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+# Make master point to an empty initial commit
+git checkout master
+git checkout --orphan temp      # create a new branch with no history
+git add .
+git commit -m "Initial commit (clean)"
+git branch -M master            # rename temp → master
+git push -f origin master       # overwrite remote master

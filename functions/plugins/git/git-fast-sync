@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+choice=$(x-gum choose "staged" "full")
+
+case $choice in
+  staged)
+    git fast-sync-staged "$@"
+    ;;
+  full)
+    git fast-sync-full "$@"
+    ;;
+esac

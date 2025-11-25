@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+git pull
+git stage-all
+git fast-commit "${1:-sync}"
+git fast-push
