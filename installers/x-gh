@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+if ! command-exists gh; then
+    # x-brew install gh > /dev/null 2>&1
+    x-brew install gh
+fi
+gh $@
+return $?
