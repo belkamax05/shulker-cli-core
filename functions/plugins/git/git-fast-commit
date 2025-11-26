@@ -1,6 +1,13 @@
 #!/usr/bin/env zsh
 local message=$1
-local prefix="$(format-cmd 'repo-fast-commit')"
+local prefix="$(format-cmd 'git-fast-commit')"
+local statusSimple=$(git-status-simple)
+# if statusSimple have no lines, skip committing
+if [[ -z "$statusSimple" ]]; then
+    echo-info "$prefix No changes to commit"
+    return 0
+fi
+
 if [[ -z "$message" ]]; then
     local newMessage=$(x-gum input --placeholder "Commit message")
     if [[ -z "$newMessage" ]]; then
@@ -10,4 +17,4 @@ if [[ -z "$message" ]]; then
     message="$newMessage"
 fi
 echo-info "$prefix Fast commit with message: $(format-args "$message")"
-git commit --no-verify -m "$1" ${@:2}
+git commit --no-verify -m "$message" ${@:2}
