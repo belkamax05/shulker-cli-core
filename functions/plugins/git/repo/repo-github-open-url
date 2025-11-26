@@ -3,7 +3,7 @@ repo-github-open-url() {
     local file=$1
     local remote=${2:-origin}
     local repoRoot=$(repo root)
-    local branch=$(repo current-branch)
+    local branch=$(git get-current-branch)
     # echo "file: $file"
     # echo "remote: $remote"
     # echo "repoRoot: $repoRoot"

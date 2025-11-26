@@ -2,7 +2,7 @@
 echo-info "Directory: ${COLOR_ARGUMENT}$(pwd)${STYLE_RESET}"
 echo-info "Repo user: ${COLOR_ARGUMENT}$(repo current-user)${STYLE_RESET}"
 echo-info "Global user: ${COLOR_ARGUMENT}$(repo current-user --global)${STYLE_RESET}"
-echo-info "Current branch: ${COLOR_ARGUMENT}$(repo current-branch)${STYLE_RESET}"
+echo-info "Current branch: ${COLOR_ARGUMENT}$(git get-current-branch)${STYLE_RESET}"
 echo-info "Current commit: ${COLOR_ARGUMENT}$(repo current-commit)${STYLE_RESET}"
 echo-info "Staged files: ${COLOR_ARGUMENT}$(repo staged-count)${STYLE_RESET}. (${COLOR_ARGUMENT}git staged${STYLE_RESET} for details)"
 echo-info "Unstaged files: ${COLOR_ARGUMENT}$(repo unstaged-count)${STYLE_RESET}. (${COLOR_ARGUMENT}git unstaged${STYLE_RESET} for details)"

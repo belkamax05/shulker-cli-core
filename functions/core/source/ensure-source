@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+#? Function to ensure a file is sourced in a target file
+ensure-source() {
+    local prefix="$(format-cmd 'ensure-source')"
+    local target_file="$1"
+    local source_file="$2"
+    local source_cmd="source \"$source_file\""
+
+    #? Create target file if it doesn't exist
+    if [[ ! -f "$target_file" ]]; then
+        touch "$target_file"
+        echo-info "Created $target_file"
+    fi
+
+    #? Check if already sourced
+    if grep -Fxq "$source_cmd" "$target_file"; then
+        echo-info "$prefix $(format-args "$source_file") is already sourced in $(format-args "$target_file")"
+    else
+        #? Append source command
+        echo "" >> "$target_file"
+        echo "$source_cmd" >> "$target_file"
+        echo-success "$prefix Added source command for $(format-args "$source_file") to $(format-args "$target_file")"
+    fi
+}
