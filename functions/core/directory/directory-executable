@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 directory-executable() {
     local srcDir="$1"
     for file in $srcDir/*; do
