@@ -5,7 +5,7 @@ local statusSimple=$(git-status-simple)
 # if statusSimple have no lines, skip committing
 if [[ -z "$statusSimple" ]]; then
     echo-info "$prefix No changes to commit"
-    return 0
+    return $CODE_OK
 fi
 
 if [[ -z "$message" ]]; then
